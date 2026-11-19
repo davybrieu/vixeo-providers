@@ -1,72 +1,59 @@
 /**
  * Autoembed provider for Vixeo
- * Ported from https://github.com/sussy-code/providers/blob/main/src/providers/sources/autoembed.ts
- * and embeds/autoembed.ts
+ * Ported from movie-web providers, with multiple domain fallbacks.
  */
 
-const BASE_URL = 'https://autoembed.cc/';
+const BASES = [
+  'https://autoembed.cc',
+  'https://autoembed.me',
+  'https://autoembed.co',
+];
 
-async function getStreams(tmdbId, mediaType, season, episode) {
+async function tryBase(base, tmdbId, mediaType, season, episode) {
+  const params = new URLSearchParams({ id: String(tmdbId) });
+  if (mediaType === 'tv' && season != null && episode != null) {
+    params.set('s', String(season));
+    params.set('e', String(episode));
+  }
+  const url = `${base}/embed/player.php?${params}`;
   try {
-    const params = new URLSearchParams({
-      id: String(tmdbId),
-    });
-    if (mediaType === 'tv' && season != null && episode != null) {
-      params.set('s', String(season));
-      params.set('e', String(episode));
-    }
-
-    const url = `${BASE_URL}embed/player.php?${params.toString()}`;
-    const response = await fetch(url, {
+    const res = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Referer': BASE_URL,
+        'Referer': base + '/',
       },
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const html = await response.text();
-    const fileDataMatch = html.match(/"file": (\[.*?\])/s);
-    if (!fileDataMatch || !fileDataMatch[1]) {
-      console.warn('No file data found in Autoembed response');
-      return [];
-    }
-
-    let fileData;
-    try {
-      // Clean trailing comma if any
-      const jsonStr = fileDataMatch[1].replace(/,\s*\]$/, ']');
-      fileData = JSON.parse(jsonStr);
-    } catch (e) {
-      console.error('Failed to parse file data:', e);
-      return [];
-    }
-
-    const streams = [];
-    for (const stream of fileData) {
-      if (!stream.file) continue;
+    if (!res.ok) return [];
+    const html = await res.text();
+    const match = html.match(/"file": (\[.*?\])/s);
+    if (!match || !match[1]) return [];
+    const jsonStr = match[1].replace(/,\s*\]$/, ']');
+    const fileData = JSON.parse(jsonStr);
+    return fileData.filter(s => s.file).map(stream => {
       const title = (stream.title || 'Unknown').trim();
-      streams.push({
+      return {
         name: 'Autoembed',
         title: `Autoembed ${title}`,
         url: stream.file,
         quality: title.toLowerCase().includes('1080') ? '1080p' :
                  title.toLowerCase().includes('720') ? '720p' :
                  title.toLowerCase().includes('480') ? '480p' : 'auto',
-        headers: {
-          Referer: BASE_URL,
-        },
-      });
-    }
-
-    return streams;
-  } catch (error) {
-    console.error('Autoembed error:', error);
+        headers: { Referer: base + '/' },
+      };
+    });
+  } catch (e) {
+    console.warn('Autoembed base failed:', base, e.message);
     return [];
   }
+}
+
+async function getStreams(tmdbId, mediaType, season, episode) {
+  for (const base of BASES) {
+    const streams = await tryBase(base, tmdbId, mediaType, season, episode);
+    if (streams.length > 0) return streams;
+  }
+  console.warn('Autoembed: no streams on any domain');
+  return [];
 }
 
 module.exports = { getStreams };
