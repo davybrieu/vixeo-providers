@@ -1,44 +1,49 @@
-[
-  {
-    "id": "autoembed",
-    "name": "Autoembed",
-    "description": "Ported from movie-web providers. Tries multiple autoembed domains.",
-    "version": "1.1.0",
-    "author": "ported from sussy-code/providers",
-    "supportedTypes": ["movie", "tv"],
-    "filename": "providers/autoembed.js",
-    "enabled": true,
-    "logo": "",
-    "contentLanguage": ["en"],
-    "formats": ["hls", "mp4"],
-    "limited": false
-  },
-  {
-    "id": "vidsrc",
-    "name": "VidSrc",
-    "description": "Ported/adapted from movie-web providers. Tries current VidSrc domains.",
-    "version": "1.0.0",
-    "author": "ported from sussy-code/providers",
-    "supportedTypes": ["movie", "tv"],
-    "filename": "providers/vidsrc.js",
-    "enabled": true,
-    "logo": "",
-    "contentLanguage": ["en"],
-    "formats": ["hls"],
-    "limited": false
-  },
-  {
-    "id": "theyallsayflix",
-    "name": "TheyAllSayFlix",
-    "description": "Ported from movie-web providers (theyallsayflix.su).",
-    "version": "1.0.0",
-    "author": "ported from sussy-code/providers",
-    "supportedTypes": ["movie", "tv"],
-    "filename": "providers/theyallsayflix.js",
-    "enabled": true,
-    "logo": "",
-    "contentLanguage": ["en"],
-    "formats": ["hls"],
-    "limited": false
-  }
-]
+{
+  "name": "Vixeo Providers (Flix ports)",
+  "version": "1.1.0",
+  "description": "Ported providers from movie-web / sussy-code/providers. Local execution.",
+  "scrapers": [
+    {
+      "id": "autoembed",
+      "name": "Autoembed",
+      "description": "Ported from movie-web providers. Tries multiple autoembed domains.",
+      "version": "1.1.0",
+      "author": "ported from sussy-code/providers",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/autoembed.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": ["en"],
+      "formats": ["hls", "mp4"],
+      "limited": false
+    },
+    {
+      "id": "vidsrc",
+      "name": "VidSrc",
+      "description": "Ported/adapted from movie-web providers. Tries current VidSrc domains.",
+      "version": "1.0.0",
+      "author": "ported from sussy-code/providers",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/vidsrc.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": ["en"],
+      "formats": ["hls"],
+      "limited": false
+    },
+    {
+      "id": "theyallsayflix",
+      "name": "TheyAllSayFlix",
+      "description": "Ported from movie-web providers (theyallsayflix.su).",
+      "version": "1.0.0",
+      "author": "ported from sussy-code/providers",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/theyallsayflix.js",
+      "enabled": true,
+      "logo": "",
+      "contentLanguage": ["en"],
+      "formats": ["hls"],
+      "limited": false
+    }
+  ]
+}
