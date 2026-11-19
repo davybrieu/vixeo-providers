@@ -34,6 +34,7 @@ async function getStreams(tmdbId, mediaType, season, episode) {
       url: s.play_url,
       quality: 'auto',
       headers: { Referer: BASE + '/' },
+      provider: 'theyallsayflix',
     }));
 
     return streams;
