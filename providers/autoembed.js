@@ -39,6 +39,7 @@ async function tryBase(base, tmdbId, mediaType, season, episode) {
                  title.toLowerCase().includes('720') ? '720p' :
                  title.toLowerCase().includes('480') ? '480p' : 'auto',
         headers: { Referer: base + '/' },
+        provider: 'autoembed',
       };
     });
   } catch (e) {
