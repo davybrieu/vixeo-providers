@@ -1,0 +1,16 @@
+[
+  {
+    "id": "autoembed",
+    "name": "Autoembed",
+    "description": "Ported from movie-web providers. Fetches streams from autoembed.cc.",
+    "version": "1.0.0",
+    "author": "ported from sussy-code/providers",
+    "supportedTypes": ["movie", "tv"],
+    "filename": "providers/autoembed.js",
+    "enabled": true,
+    "logo": "",
+    "contentLanguage": ["en"],
+    "formats": ["hls", "mp4"],
+    "limited": false
+  }
+]
