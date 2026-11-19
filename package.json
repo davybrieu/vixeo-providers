@@ -1,0 +1,21 @@
+{
+  "name": "vixeo-providers",
+  "version": "1.0.0",
+  "description": "JavaScript providers and extractors for Vixeo, compatible with Nuvio-style plugins",
+  "main": "manifest.json",
+  "scripts": {
+    "test": "echo \"Add tests with scraper-runner from vixeo_frontend\" && exit 0"
+  },
+  "keywords": [
+    "vixeo",
+    "nuvio",
+    "streaming",
+    "providers",
+    "scrapers"
+  ],
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davybrieu/vixeo-providers.git"
+  }
+}
