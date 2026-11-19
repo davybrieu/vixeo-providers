@@ -10,19 +10,19 @@ Providers and extractors are ports / adaptations of those from [@movie-web/provi
 
 ## Usage in Vixeo
 
-1. In the Vixeo app, go to Settings → Plugins / Scrapers.
+1. In the Vixeo app, go to Settings → Plug-ins.
 2. Add this **single** repository URL (one addon):
    ```
    https://raw.githubusercontent.com/davybrieu/vixeo-providers/refs/heads/main/manifest.json
    ```
-3. The addon is enabled/disabled as a whole (no per-provider toggles).
-4. In the Sources panel you will see **all the individual providers** listed (Autoembed, VidSrc, TheyAllSayFlix, ...).
+3. The Plug-ins page shows **the addon only, not its providers**: it is enabled/disabled and moved up/down as a whole (no per-provider toggles or order). The providers keep the order of `manifest.json`.
+4. In the Sources panel you will see **all the individual providers** of the enabled addons, in the addons' order (Autoembed, VidSrc, TheyAllSayFlix, ...).
 5. You can refresh the search on a title if a provider returns nothing.
 
 ## Manifest fields
 
 - `execution`: `"device"` (local) or `"server"` — fixed in the manifest, not a UI toggle.
-- `scrapers`: list of providers exposed by this addon. They appear in the Sources list but cannot be toggled individually.
+- `scrapers`: list of providers exposed by this addon, in the order the Sources panel lists them. They are not shown in the Plug-ins page and cannot be toggled or reordered individually.
 
 ## Structure
 
