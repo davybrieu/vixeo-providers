@@ -4,7 +4,7 @@ Collection of JavaScript scrapers (providers & extractors) for [Vixeo](https://g
 
 These follow the same plugin format as [Nuvio providers](https://github.com/yoruix/nuvio-providers) and are compatible with Vixeo's sandboxed JavaScript plugin system (see `docs/scrapers.md` in the frontend repo).
 
-**Local execution** (code runs on the device, not on a remote server).
+**Execution mode is declared in the manifest** (`"execution": "device"`). Code runs locally on the device. This is not configurable in the app.
 
 Providers and extractors are ports / adaptations of those from [@movie-web/providers](https://github.com/sussy-code/providers) (used by movie-web / sudo-flix).
 
@@ -15,9 +15,14 @@ Providers and extractors are ports / adaptations of those from [@movie-web/provi
    ```
    https://raw.githubusercontent.com/davybrieu/vixeo-providers/refs/heads/main/manifest.json
    ```
-3. Refresh the list.
-4. In the Sources panel you will see **all the individual providers** (Autoembed, VidSrc, TheyAllSayFlix, ...).
-5. Enable/disable the ones you want. You can refresh the search per title if a provider returns nothing.
+3. The addon is enabled/disabled as a whole (no per-provider toggles).
+4. In the Sources panel you will see **all the individual providers** listed (Autoembed, VidSrc, TheyAllSayFlix, ...).
+5. You can refresh the search on a title if a provider returns nothing.
+
+## Manifest fields
+
+- `execution`: `"device"` (local) or `"server"` — fixed in the manifest, not a UI toggle.
+- `scrapers`: list of providers exposed by this addon. They appear in the Sources list but cannot be toggled individually.
 
 ## Structure
 
