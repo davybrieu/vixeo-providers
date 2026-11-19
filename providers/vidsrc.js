@@ -21,7 +21,6 @@ async function tryDomain(base, path) {
     });
     if (!res.ok) return null;
     const text = await res.text();
-    // Look for common m3u8 or file patterns
     const m3u8 = text.match(/https?:\/\/[^"'\s]+\.m3u8[^"'\s]*/);
     if (m3u8) return m3u8[0];
     const file = text.match(/["']file["']\s*:\s*["'](https?:\/\/[^"']+)["']/);
@@ -48,6 +47,7 @@ async function getStreams(tmdbId, mediaType, season, episode) {
         url,
         quality: 'auto',
         headers: { Referer: domain + '/' },
+        provider: 'vidsrc',
       });
     }
   }
