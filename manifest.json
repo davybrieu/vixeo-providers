@@ -1,7 +1,8 @@
 {
   "name": "Vixeo Providers (Flix ports)",
-  "version": "1.1.0",
-  "description": "Ported providers from movie-web / sussy-code/providers. Local execution.",
+  "version": "1.2.0",
+  "description": "Ported providers from movie-web / sussy-code/providers.",
+  "execution": "device",
   "scrapers": [
     {
       "id": "autoembed",
@@ -11,7 +12,6 @@
       "author": "ported from sussy-code/providers",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/autoembed.js",
-      "enabled": true,
       "logo": "",
       "contentLanguage": ["en"],
       "formats": ["hls", "mp4"],
@@ -25,7 +25,6 @@
       "author": "ported from sussy-code/providers",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/vidsrc.js",
-      "enabled": true,
       "logo": "",
       "contentLanguage": ["en"],
       "formats": ["hls"],
@@ -39,7 +38,6 @@
       "author": "ported from sussy-code/providers",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/theyallsayflix.js",
-      "enabled": true,
       "logo": "",
       "contentLanguage": ["en"],
       "formats": ["hls"],
